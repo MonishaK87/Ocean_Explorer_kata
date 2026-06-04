@@ -18,7 +18,8 @@
 - `ExecutionResult` reports final state, visited path, and block reason.
 
 ## Linux
-## How to compile
+
+## How to compile (Linux)
 ```bash
 javac -d out $(find src test -name "*.java")
 ```
@@ -32,6 +33,8 @@ java -cp out oceanexplorer.OceanExplorerTests
 ```bash
 java -cp out oceanexplorer.OceanExplorerDemo
 ```
+
+
 ## Windows
 
 ## Assumptions
@@ -58,11 +61,12 @@ The solution is designed using object-oriented principles with clear separation 
 ## How to Compile (Windows)
 
 ### Option 1: Using Command Prompt (CMD)
-
+Open Command Prompt from the project root folder and run:
 ```bat
-cd your-project-folder
-mkdir out
-javac -d out src\oceanexplorer\*.java test\oceanexplorer\*.java
+mkdir out 
+for /R src %f in (*.java) do @echo %f >> sources.txt 
+for /R test %f in (*.java) do @echo %f >> sources.txt 
+javac -d out @sources.txt
 ```
 
 ### Option 2: Using PowerShell
@@ -77,9 +81,29 @@ javac -d out $files
 ```bat
 java -cp out oceanexplorer.OceanExplorerTests
 ```
+## Testing
+
+A lightweight dependency-free test suite is included covering:
+
+- Direction changes
+- Forward and backward movement
+- Command sequences
+- Obstacle handling
+- Boundary handling
+- Invalid commands
+- Invalid starting positions
+- Path tracking
 
 ## How to Run Demo
 
 ```bat
 java -cp out oceanexplorer.OceanExplorerDemo
 ```
+
+## Sample output:
+
+Final position : (1,2)  
+Final direction: EAST  
+Status         : BLOCKED_BY_OBSTACLE  
+Visited path   : (0,0) -> (0,1) -> (0,2) -> (1,2)  
+Message        : Movement blocked by obstacle at (2,2).  
